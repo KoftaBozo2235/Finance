@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell Stock
+{% endblock %}
+
+{% block main %}
+<form action="/sell_stock" method="post">
+<div class="container">
+    <h1 class="mt-4">Finalize Sale</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Stock</th>
+                <th>Shares</th>
+                <th>Price per Share</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ symbol }}</td>
+                <td>{{ shares }}</td>
+                <td>{{ price }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ total | usd }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="mt-4">
+        <strong>Cash after sale:</strong> {{ cash }} + {{ total | usd }} = <strong>{{ sum | usd }}</strong>
+    </div>
+    <br>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Confirm Purchase</button>
+    </div>
+</div>
+</form>
+{% endblock %}

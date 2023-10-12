@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+<form action="/" method="post">
+    <h1>Index</h1>
+    <br>
+    <h3>Stock Holdings</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Stock</th>
+                <th>Shares</th>
+                <th>Price per Share</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+                <tr>
+                    <td>{{ stock["symbol"] }}</td>
+                    <td>{{ stock["shares"] }}</td>
+                    <td>{{ stock["price"] | usd}}</td>
+                    <td>{{ stock["total"] | usd}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3>Grand Total</h3>
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Value of stock holdings</th>
+            <th>Value of cash holdings</th>
+            <th>Grand total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ stock_holdings | usd}}</td>
+            <td>{{ cash | usd}}</td>
+            <td>{{ grand_total | usd}}</td>
+        </tr>
+    </tbody>
+</table>
+</form>
+{% endblock %}

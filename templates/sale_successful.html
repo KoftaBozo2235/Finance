@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Sale Successful
+{% endblock %}
+
+{% block main %}
+<form action="/sale_successful" method="post">
+    <h1>Stock sale successful!</h1>
+    <button class="btn btn-primary" type="submit">Sell More?</button>
+</form>
+{% endblock %}

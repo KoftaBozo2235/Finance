@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <h1 class="mt-4">Sell Stocks</h1>
+        <h3>Stock Holdings</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Stock</th>
+                    <th>Shares</th>
+                    <th>Price per Share</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stock in stocks %}
+                    <tr>
+                        <td>{{ stock["symbol"] }}</td>
+                        <td>{{ stock["shares"] }}</td>
+                        <td>{{ stock["price"] }}</td>
+                        <td>{{ stock["total"] | usd }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="/sell" method="post" class="mt-4">
+            <div class="form-group">
+                <label for="stocks_to_sell"><h3>Select stock to sell</h3></label>
+                <select class="form-control" name="symbol">
+                    {% for stock in stocks %}
+                        <option value="{{ stock['symbol'] }}">{{ stock["symbol"] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <h3>Amount of shares to sell</h3>
+            <input type="number" placeholder="Amount..." autocomplete="off" autofocus class="form-control mx-auto w-auto" name="shares">
+            <button type="submit" class="btn btn-primary mt-3">Sell</button>
+        </form>
+    </div>
+{% endblock %}

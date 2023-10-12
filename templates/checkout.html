@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy Stock
+{% endblock %}
+
+{% block main %}
+<form action="/checkout" method="post">
+<div class="container">
+    <h1 class="mt-4">Finalize Purchase</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Stock</th>
+                <th>Shares</th>
+                <th>Price per Share</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ purchase }}</td>
+                <td>{{ shares }}</td>
+                <td>{{ price_per_share }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ price }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="mt-4">
+        <strong>Remaining Cash:</strong> {{ cash }} - {{ price }} = <strong>{{ remaining_cash }}</strong>
+    </div>
+    <br>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Confirm Purchase</button>
+    </div>
+</div>
+</form>
+{% endblock %}

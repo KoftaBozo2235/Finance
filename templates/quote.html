@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+<form action="/quote" method="post">
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search stock quote..." name="symbol">
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">Search</button>
+    </div>
+</form>
+
+{% if data %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Stock Symbol</th>
+            <th>Price per share</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ data.name }}</td>
+            <td>{{ price }}</td>
+        </tr>
+    </tbody>
+</table>
+{% endif %}
+{% endblock %}
